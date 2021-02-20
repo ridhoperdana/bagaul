@@ -12,8 +12,8 @@ if (token === undefined) {
 
 const bot = new Telegraf(token);
 
-console.log(`token ${token}`);
-console.log(bot.botInfo);
+console.log(bot);
+console.log('bot init');
 
 bot.command('help', (ctx) => {
     console.log('enter help');
@@ -41,6 +41,10 @@ bot.on('/help', (ctx) => {
     console.log('/help called');
     ctx.replyWithHTML("this is help");
 });
+
+bot.start((ctx) => {
+    ctx.telegram.sendMessage('welcome to bot bagaul');
+})
 
 bot.launch();
 
