@@ -3,7 +3,9 @@ const express = require('express'),
     cors = require('cors'),
     bodyParser = require('body-parser');
 
-import { Telegraf } from 'telegraf'
+const { Telegraf } = require('telegraf');
+
+console.log('bot iniiiiiiiit');
 
 const token = process.env.BOT_TOKEN
 if (token === undefined) {
