@@ -12,11 +12,18 @@ if (token === undefined) {
 
 const bot = new Telegraf(token)
 bot.on('g', (ctx) => {
+    console.log('g called');
     const data = ctx.getChat.toString();
     ctx.replyWithHTML(`${data}`);
 });
 
 bot.on('help', (ctx) => {
+    console.log('help called');
+    ctx.replyWithHTML("this is help");
+});
+
+bot.on('/help', (ctx) => {
+    console.log('/help called');
     ctx.replyWithHTML("this is help");
 });
 
