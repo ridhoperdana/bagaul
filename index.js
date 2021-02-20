@@ -56,6 +56,8 @@ app.post("/convert", async function (req, res) {
             break;
     }
 
+    console.log(`http res: ${newText}`);
+
 
     res.statusCode = 200;
     res.send({
