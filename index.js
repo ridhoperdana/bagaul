@@ -12,8 +12,10 @@ if (token === undefined) {
 
 const bot = new Telegraf(token);
 
-bot.command(['g', '/g', 'help', '/help']);
-bot.launch();
+bot.command('help', (ctx) => {
+    console.log('enter help');
+    ctx.replyWithHTML('you have help');
+});
 
 bot.on('g', (ctx) => {
     console.log('g called');
@@ -36,6 +38,8 @@ bot.on('/help', (ctx) => {
     console.log('/help called');
     ctx.replyWithHTML("this is help");
 });
+
+bot.launch();
 
 app.use(cors());
 app.use(bodyParser.json());
