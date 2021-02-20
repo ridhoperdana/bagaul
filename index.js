@@ -10,9 +10,19 @@ if (token === undefined) {
     throw new Error('BOT_TOKEN must be provided!')
 }
 
-const bot = new Telegraf(token)
+const bot = new Telegraf(token);
+
+bot.command(['g', '/g', 'help', '/help']);
+bot.launch();
+
 bot.on('g', (ctx) => {
     console.log('g called');
+    const data = ctx.getChat.toString();
+    ctx.replyWithHTML(`${data}`);
+});
+
+bot.on('/g', (ctx) => {
+    console.log('/g called');
     const data = ctx.getChat.toString();
     ctx.replyWithHTML(`${data}`);
 });
