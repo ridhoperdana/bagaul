@@ -12,6 +12,8 @@ if (token === undefined) {
 
 const bot = new Telegraf(token);
 
+console.log(bot.botInfo.username);
+
 bot.command('help', (ctx) => {
     console.log('enter help');
     ctx.replyWithHTML('you have help');
