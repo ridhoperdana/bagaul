@@ -3,7 +3,24 @@ const express = require('express'),
     cors = require('cors'),
     bodyParser = require('body-parser');
 
-app.use(cors())
+import { Telegraf } from 'telegraf'
+
+const token = process.env.BOT_TOKEN
+if (token === undefined) {
+    throw new Error('BOT_TOKEN must be provided!')
+}
+
+const bot = new Telegraf(token)
+bot.on('g', (ctx) => {
+    const data = ctx.getChat.toString();
+    ctx.replyWithHTML(`${data}`);
+});
+
+bot.on('help', (ctx) => {
+    ctx.replyWithHTML("this is help");
+});
+
+app.use(cors());
 app.use(bodyParser.json());
 
 app.post("/convert", async function (req, res) {
