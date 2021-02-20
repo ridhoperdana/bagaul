@@ -3,52 +3,52 @@ const express = require('express'),
     cors = require('cors'),
     bodyParser = require('body-parser');
 
-const { Telegraf } = require('telegraf');
+// const { Telegraf } = require('telegraf');
 
-console.log('bot iniiiiiiiit');
+// console.log('bot iniiiiiiiit');
 
-const token = process.env.BOT_TOKEN
-if (token === undefined) {
-    throw new Error('BOT_TOKEN must be provided!')
-}
+// const token = process.env.BOT_TOKEN
+// if (token === undefined) {
+//     throw new Error('BOT_TOKEN must be provided!')
+// }
 
-const bot = new Telegraf(token);
+// const bot = new Telegraf(token);
 
-console.log(bot);
-console.log('bot init');
+// console.log(bot);
+// console.log('bot init');
 
-bot.command('help', (ctx) => {
-    console.log('enter help');
-    ctx.replyWithHTML('you have help');
-});
+// bot.command('help', (ctx) => {
+//     console.log('enter help');
+//     ctx.replyWithHTML('you have help');
+// });
 
-bot.on('g', (ctx) => {
-    console.log('g called');
-    const data = ctx.getChat.toString();
-    ctx.replyWithHTML(`${data}`);
-});
+// bot.on('g', (ctx) => {
+//     console.log('g called');
+//     const data = ctx.getChat.toString();
+//     ctx.replyWithHTML(`${data}`);
+// });
 
-bot.on('/g', (ctx) => {
-    console.log('/g called');
-    const data = ctx.getChat.toString();
-    ctx.replyWithHTML(`${data}`);
-});
+// bot.on('/g', (ctx) => {
+//     console.log('/g called');
+//     const data = ctx.getChat.toString();
+//     ctx.replyWithHTML(`${data}`);
+// });
 
-bot.on('help', (ctx) => {
-    console.log('help called');
-    ctx.replyWithHTML("this is help");
-});
+// bot.on('help', (ctx) => {
+//     console.log('help called');
+//     ctx.replyWithHTML("this is help");
+// });
 
-bot.on('/help', (ctx) => {
-    console.log('/help called');
-    ctx.replyWithHTML("this is help");
-});
+// bot.on('/help', (ctx) => {
+//     console.log('/help called');
+//     ctx.replyWithHTML("this is help");
+// });
 
-bot.start((ctx) => {
-    ctx.telegram.sendMessage('welcome to bot bagaul');
-})
+// bot.start((ctx) => {
+//     ctx.telegram.sendMessage('welcome to bot bagaul');
+// })
 
-bot.launch();
+// bot.launch();
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -78,6 +78,9 @@ app.post("/convert", async function (req, res) {
             return;
             break;
     }
+
+    const token = process.env.BOT_TOKEN
+    console.log(`token ${token}`);
 
     console.log(`http res: ${newText}`);
 
