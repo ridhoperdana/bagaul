@@ -58,6 +58,29 @@ const gConverter = function (requestedText) {
                 }
             }
 
+            if ((i + 3) <= element.length) {
+                const endWord = element.charAt(i + 1) + element.charAt(i + 2) + element.charAt(i + 3);
+                switch (endWord) {
+                    case 'nya':
+                        continue;
+                        break;
+                    case 'man':
+                        continue;
+                        break;
+                    case 'kan':
+                        continue;
+                        break;
+                    case 'nya':
+                        continue;
+                        break;
+                    case 'wan':
+                        continue;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
             if (i !== element.length - 1) {
                 newText += "ege";
             }
