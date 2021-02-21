@@ -36,6 +36,7 @@ const gConverter = function (requestedText) {
     for (var i = 0; i < requestedText.length; i++) {
         newText += requestedText.charAt(i);
         if (requestedText.charAt(i) == "a" || requestedText.charAt(i) == "i" || requestedText.charAt(i) == "u" || requestedText.charAt(i) == "e" || requestedText.charAt(i) == "o") {
+            console.log(`added atas ${i}`);
             newText += "g";
             newText += requestedText.charAt(i);
             continue;
@@ -43,9 +44,12 @@ const gConverter = function (requestedText) {
 
         if ((i + 2) <= requestedText.length) {
             if (requestedText.charAt(i + 2) == "a" || requestedText.charAt(i + 2) == "i" || requestedText.charAt(i + 2) == "u" || requestedText.charAt(i + 2) == "e" || requestedText.charAt(i) == "o") {
+                console.log(`skipped ${i}`);
                 continue;
             }
         }
+
+        console.log(`added bawah ${i}`);
 
         newText += "ege";
     }
