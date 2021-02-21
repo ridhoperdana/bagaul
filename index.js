@@ -42,7 +42,7 @@ const gConverter = function (requestedText) {
             continue;
         }
 
-        if ((i + 2) <= requestedText.length) {
+        if (((i + 2) <= requestedText.length) || (i + 1) <= requestedText.length) {
             if (requestedText.charAt(i + 2) == "a" || requestedText.charAt(i + 2) == "i" || requestedText.charAt(i + 2) == "u" || requestedText.charAt(i + 2) == "e" || requestedText.charAt(i) == "o") {
                 console.log(`skipped ${i}`);
                 continue;
