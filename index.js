@@ -76,6 +76,11 @@ app.post("/convert", async function (req, res) {
     });
 });
 
-app.listen("3000", () => {
+let port = "3000";
+if (process.env.PORT !== undefined || process.env.PORT !== '') {
+    port = process.env.PORT;
+}
+
+app.listen(port, () => {
     console.log('App started');
 });
