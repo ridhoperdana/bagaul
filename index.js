@@ -35,30 +35,35 @@ app.use(bodyParser.json());
 
 const gConverter = function (requestedText) {
     let newText = "";
-    for (var i = 0; i < requestedText.length; i++) {
-        newText += requestedText.charAt(i);
-        if (requestedText.charAt(i) == "a" || requestedText.charAt(i) == "i" || requestedText.charAt(i) == "u" || requestedText.charAt(i) == "e" || requestedText.charAt(i) == "o") {
-            newText += "g";
-            newText += requestedText.charAt(i);
-            continue;
-        }
-
-        if ((i + 2) <= requestedText.length) {
-            if (requestedText.charAt(i + 2) == "a" || requestedText.charAt(i + 2) == "i" || requestedText.charAt(i + 2) == "u" || requestedText.charAt(i + 2) == "e" || requestedText.charAt(i + 2) == "o") {
+    requestedTextSplit = requestedText.split(" ");
+    for (let root = 0; root < requestedTextSplit.length; root++) {
+        const element = requestedTextSplit[root];
+        for (var i = 0; i < element.length; i++) {
+            newText += element.charAt(i);
+            if (element.charAt(i) == "a" || element.charAt(i) == "i" || element.charAt(i) == "u" || element.charAt(i) == "e" || element.charAt(i) == "o") {
+                newText += "g";
+                newText += element.charAt(i);
                 continue;
             }
-        }
 
-        if ((i + 1) <= requestedText.length) {
-            if (requestedText.charAt(i + 1) == "a" || requestedText.charAt(i + 1) == "i" || requestedText.charAt(i + 1) == "u" || requestedText.charAt(i + 1) == "e" || requestedText.charAt(i + 1) == "o") {
-                continue;
+            if ((i + 2) <= element.length) {
+                if (element.charAt(i + 2) == "a" || element.charAt(i + 2) == "i" || element.charAt(i + 2) == "u" || element.charAt(i + 2) == "e" || element.charAt(i + 2) == "o") {
+                    continue;
+                }
             }
-        }
 
-        if (i !== requestedText.length - 1) {
-            newText += "ege";
+            if ((i + 1) <= element.length) {
+                if (element.charAt(i + 1) == "a" || element.charAt(i + 1) == "i" || element.charAt(i + 1) == "u" || element.charAt(i + 1) == "e" || element.charAt(i + 1) == "o") {
+                    continue;
+                }
+            }
+
+            if (i !== element.length - 1) {
+                newText += "ege";
+            }
         }
     }
+
     return newText;
 }
 
