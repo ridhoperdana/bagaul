@@ -26,7 +26,6 @@ bot.on('inline_query', (ctx) => {
     }]);
 });
 
-
 bot.launch();
 
 app.use(cors());
@@ -63,12 +62,6 @@ app.post("/convert", async function (req, res) {
             return;
             break;
     }
-
-    const token = process.env.BOT_TOKEN
-    console.log(`token ${token}`);
-
-    console.log(`http res: ${newText}`);
-
 
     res.statusCode = 200;
     res.send({
