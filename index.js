@@ -38,7 +38,10 @@ const gConverter = function (requestedText) {
         if (requestedText.charAt(i) == "a" || requestedText.charAt(i) == "i" || requestedText.charAt(i) == "u" || requestedText.charAt(i) == "e" || requestedText.charAt(i) == "o") {
             newText += "g";
             newText += requestedText.charAt(i);
+            continue;
         }
+        newText += "e";
+        newText += requestedText.charAt(i);
     }
     return newText;
 }
