@@ -62,6 +62,7 @@ const gConverter = function (requestedText) {
                 newText += "ege";
             }
         }
+        newText += " "
     }
 
     return newText;
