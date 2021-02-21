@@ -62,6 +62,10 @@ const gConverter = function (requestedText) {
                 newText += "ege";
             }
         }
+
+        if (root !== element.length - 1) {
+            return newText;
+        }
         newText += " "
     }
 
