@@ -40,6 +40,13 @@ const gConverter = function (requestedText) {
             newText += requestedText.charAt(i);
             continue;
         }
+
+        if ((i + 2) <= requestedText.length) {
+            if (requestedText.charAt(i + 2) == "a" || requestedText.charAt(i + 2) == "i" || requestedText.charAt(i + 2) == "u" || requestedText.charAt(i + 2) == "e" || requestedText.charAt(i) == "o") {
+                continue;
+            }
+        }
+
         newText += "ege";
     }
     return newText;
