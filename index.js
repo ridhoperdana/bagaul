@@ -50,6 +50,15 @@ const gConverter = function (requestedText) {
                 if (element.charAt(i + 2) == "a" || element.charAt(i + 2) == "i" || element.charAt(i + 2) == "u" || element.charAt(i + 2) == "e" || element.charAt(i + 2) == "o") {
                     continue;
                 }
+
+                const endWord = element.charAt(i) + element.charAt(i + 1);
+                switch (endWord) {
+                    case 'ng':
+                        continue;
+                        break;
+                    default:
+                        break;
+                }
             }
 
             if ((i + 1) <= element.length) {
