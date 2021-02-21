@@ -3,55 +3,46 @@ const express = require('express'),
     cors = require('cors'),
     bodyParser = require('body-parser');
 
-// const { Telegraf } = require('telegraf');
+const tele = require('telegraf');
 
-// console.log('bot iniiiiiiiit');
+const token = process.env.BOT_TOKEN
+if (token === undefined) {
+    throw new Error('BOT_TOKEN must be provided!')
+}
 
-// const token = process.env.BOT_TOKEN
-// if (token === undefined) {
-//     throw new Error('BOT_TOKEN must be provided!')
-// }
+const bot = new tele.Telegraf(token);
+bot.start((ctx) => {
+    ctx.replyWithHTML("halo");
+});
 
-// const bot = new Telegraf(token);
+bot.on('inline_query', (ctx) => {
+    ctx.answerInlineQuery([{
+        type: 'article',
+        id: '1',
+        title: 'Hasil bahasa G',
+        input_message_content: {
+            message_text: gConverter(ctx.inlineQuery.query)
+        }
+    }]);
+});
 
-// console.log(bot);
-// console.log('bot init');
 
-// bot.command('help', (ctx) => {
-//     console.log('enter help');
-//     ctx.replyWithHTML('you have help');
-// });
-
-// bot.on('g', (ctx) => {
-//     console.log('g called');
-//     const data = ctx.getChat.toString();
-//     ctx.replyWithHTML(`${data}`);
-// });
-
-// bot.on('/g', (ctx) => {
-//     console.log('/g called');
-//     const data = ctx.getChat.toString();
-//     ctx.replyWithHTML(`${data}`);
-// });
-
-// bot.on('help', (ctx) => {
-//     console.log('help called');
-//     ctx.replyWithHTML("this is help");
-// });
-
-// bot.on('/help', (ctx) => {
-//     console.log('/help called');
-//     ctx.replyWithHTML("this is help");
-// });
-
-// bot.start((ctx) => {
-//     ctx.telegram.sendMessage('welcome to bot bagaul');
-// })
-
-// bot.launch();
+bot.launch();
 
 app.use(cors());
 app.use(bodyParser.json());
+
+const gConverter = function (requestedText) {
+    let newText = "";
+    for (var i = 0; i < requestedText.length; i++) {
+        newText += requestedText.charAt(i);
+        if (requestedText.charAt(i) == "a" || requestedText.charAt(i) == "i" || requestedText.charAt(i) == "u" || requestedText.charAt(i) == "e" || requestedText.charAt(i) == "o") {
+            newText += "g";
+            newText += requestedText.charAt(i);
+        }
+    }
+    return newText;
+}
 
 app.post("/convert", async function (req, res) {
     const requestedText = req.body["text"];
@@ -61,13 +52,7 @@ app.post("/convert", async function (req, res) {
 
     switch (langType) {
         case "g":
-            for (var i = 0; i < requestedText.length; i++) {
-                newText += requestedText.charAt(i);
-                if (requestedText.charAt(i) == "a" || requestedText.charAt(i) == "i" || requestedText.charAt(i) == "u" || requestedText.charAt(i) == "e" || requestedText.charAt(i) == "o") {
-                    newText += "g";
-                    newText += requestedText.charAt(i);
-                }
-            }
+            newText += gConverter(requestedText);
             break;
 
         default:
