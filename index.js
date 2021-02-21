@@ -42,9 +42,16 @@ const gConverter = function (requestedText) {
             continue;
         }
 
-        if (((i + 2) <= requestedText.length) || (i + 1) <= requestedText.length) {
-            if (requestedText.charAt(i + 2) == "a" || requestedText.charAt(i + 2) == "i" || requestedText.charAt(i + 2) == "u" || requestedText.charAt(i + 2) == "e" || requestedText.charAt(i) == "o") {
-                console.log(`skipped ${i}`);
+        if ((i + 2) <= requestedText.length) {
+            if (requestedText.charAt(i + 2) == "a" || requestedText.charAt(i + 2) == "i" || requestedText.charAt(i + 2) == "u" || requestedText.charAt(i + 2) == "e" || requestedText.charAt(i + 2) == "o") {
+                console.log(`skipped atas ${i}`);
+                continue;
+            }
+        }
+
+        if ((i + 1) <= requestedText.length) {
+            if (requestedText.charAt(i + 1) == "a" || requestedText.charAt(i + 1) == "i" || requestedText.charAt(i + 1) == "u" || requestedText.charAt(i + 1) == "e" || requestedText.charAt(i + 1) == "o") {
+                console.log(`skipped bawah ${i}`);
                 continue;
             }
         }
