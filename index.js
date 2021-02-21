@@ -95,7 +95,7 @@ const gConverter = function (requestedText) {
             }
         }
 
-        if (root === element.length - 1) {
+        if (root === requestedTextSplit.length - 1) {
             return newText;
         }
         newText += " "
