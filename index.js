@@ -38,7 +38,6 @@ const gConverter = function (requestedText) {
     for (var i = 0; i < requestedText.length; i++) {
         newText += requestedText.charAt(i);
         if (requestedText.charAt(i) == "a" || requestedText.charAt(i) == "i" || requestedText.charAt(i) == "u" || requestedText.charAt(i) == "e" || requestedText.charAt(i) == "o") {
-            console.log(`added atas ${i}`);
             newText += "g";
             newText += requestedText.charAt(i);
             continue;
@@ -56,7 +55,9 @@ const gConverter = function (requestedText) {
             }
         }
 
-        newText += "ege";
+        if (i !== requestedText.length - 1) {
+            newText += "ege";
+        }
     }
     return newText;
 }
