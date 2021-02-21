@@ -40,8 +40,7 @@ const gConverter = function (requestedText) {
             newText += requestedText.charAt(i);
             continue;
         }
-        newText += "e";
-        newText += requestedText.charAt(i);
+        newText += "ege";
     }
     return newText;
 }
