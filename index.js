@@ -16,14 +16,16 @@ bot.start((ctx) => {
 });
 
 bot.on('inline_query', (ctx) => {
-    ctx.answerInlineQuery([{
-        type: 'article',
-        id: '1',
-        title: 'Hasil bahasa G',
-        input_message_content: {
-            message_text: gConverter(ctx.inlineQuery.query)
-        }
-    }]);
+    if (ctx.inlineQuery.query !== '') {
+        ctx.answerInlineQuery([{
+            type: 'article',
+            id: '1',
+            title: 'Hasil bahasa G',
+            input_message_content: {
+                message_text: gConverter(ctx.inlineQuery.query)
+            }
+        }]);
+    }
 });
 
 bot.launch();
@@ -44,19 +46,15 @@ const gConverter = function (requestedText) {
 
         if ((i + 2) <= requestedText.length) {
             if (requestedText.charAt(i + 2) == "a" || requestedText.charAt(i + 2) == "i" || requestedText.charAt(i + 2) == "u" || requestedText.charAt(i + 2) == "e" || requestedText.charAt(i + 2) == "o") {
-                console.log(`skipped atas ${i}`);
                 continue;
             }
         }
 
         if ((i + 1) <= requestedText.length) {
             if (requestedText.charAt(i + 1) == "a" || requestedText.charAt(i + 1) == "i" || requestedText.charAt(i + 1) == "u" || requestedText.charAt(i + 1) == "e" || requestedText.charAt(i + 1) == "o") {
-                console.log(`skipped bawah ${i}`);
                 continue;
             }
         }
-
-        console.log(`added bawah ${i}`);
 
         newText += "ege";
     }
