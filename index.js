@@ -16,10 +16,8 @@ bot.start((ctx) => {
 });
 
 bot.on("text", (ctx) => {
-    if (gConverter(ctx.message_text) !== '') {
-        ctx.reply(gConverter(ctx.message_text));
-    } else {
-        ctx.reply('Text tidak diterima');
+    if (gConverter(ctx.message.text) !== '') {
+        ctx.reply(gConverter(ctx.message.text));
     }
 })
 
@@ -41,6 +39,10 @@ bot.launch();
 app.use(cors());
 app.use(bodyParser.json());
 
+const isVowel = function (character) {
+    return character === "a" || character === "i" || character === "u" || character === "e" || character === "o";
+}
+
 const gConverter = function (requestedText) {
     let newText = "";
     requestedTextSplit = requestedText.split(" ");
@@ -48,14 +50,14 @@ const gConverter = function (requestedText) {
         const element = requestedTextSplit[root];
         for (var i = 0; i < element.length; i++) {
             newText += element.charAt(i);
-            if (element.charAt(i) == "a" || element.charAt(i) == "i" || element.charAt(i) == "u" || element.charAt(i) == "e" || element.charAt(i) == "o") {
+            if (isVowel(element.charAt(i).toLowerCase())) {
                 newText += "g";
                 newText += element.charAt(i);
                 continue;
             }
 
             if ((i + 2) <= element.length) {
-                if (element.charAt(i + 2) == "a" || element.charAt(i + 2) == "i" || element.charAt(i + 2) == "u" || element.charAt(i + 2) == "e" || element.charAt(i + 2) == "o") {
+                if (isVowel(element.charAt(i + 2))) {
                     continue;
                 }
 
@@ -63,14 +65,13 @@ const gConverter = function (requestedText) {
                 switch (endWord) {
                     case 'ng':
                         continue;
-                        break;
                     default:
                         break;
                 }
             }
 
             if ((i + 1) <= element.length) {
-                if (element.charAt(i + 1) == "a" || element.charAt(i + 1) == "i" || element.charAt(i + 1) == "u" || element.charAt(i + 1) == "e" || element.charAt(i + 1) == "o") {
+                if (isVowel(element.charAt(i + 1))) {
                     continue;
                 }
             }
@@ -80,19 +81,12 @@ const gConverter = function (requestedText) {
                 switch (endWord) {
                     case 'nya':
                         continue;
-                        break;
                     case 'man':
                         continue;
-                        break;
                     case 'kan':
                         continue;
-                        break;
-                    case 'nya':
-                        continue;
-                        break;
                     case 'wan':
                         continue;
-                        break;
                     default:
                         break;
                 }
@@ -129,7 +123,6 @@ app.post("/convert", async function (req, res) {
                 "error": "type not supported"
             });
             return;
-            break;
     }
 
     res.statusCode = 200;
@@ -138,7 +131,7 @@ app.post("/convert", async function (req, res) {
     });
 });
 
-let port = "3000";
+let port = 3000;
 if (process.env.PORT !== undefined || process.env.PORT !== '') {
     port = process.env.PORT;
 }
