@@ -15,6 +15,14 @@ bot.start((ctx) => {
     ctx.replyWithHTML("halo");
 });
 
+bot.on("text", (ctx) => {
+    if (gConverter(ctx.message_text) !== '') {
+        ctx.reply(gConverter(ctx.message_text));
+    } else {
+        ctx.reply('Text tidak diterima');
+    }
+})
+
 bot.on('inline_query', (ctx) => {
     if (ctx.inlineQuery.query !== '') {
         ctx.answerInlineQuery([{
