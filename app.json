@@ -1,0 +1,20 @@
+{
+    "env": {
+        "ENV": {
+            "description": "deployment environment for the app",
+            "value": "production"
+        },
+        "BOT_TOKEN": {
+            "description": "deployment environment variable for the app",
+            "value": "scret-key"
+        },
+        "PORT": {
+            "description": "port for the app",
+            "value": "5000"
+        },
+        "HOST": {
+            "description": "host for the app for auto refresh",
+            "value": "https://bagaul.herokuapp.com"
+        }
+    }
+}
