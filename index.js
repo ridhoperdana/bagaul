@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express'),
     app = express(),
     cors = require('cors'),
@@ -131,10 +132,21 @@ app.post("/convert", async function (req, res) {
     });
 });
 
+app.get("/ping", async function (req, res) {
+    res.statusCode = 200;
+    res.send({
+        "result": 'pong'
+    });
+});
+
 let port = 3000;
 if (process.env.PORT !== undefined || process.env.PORT !== '') {
     port = process.env.PORT;
 }
+
+setInterval(function() {
+    http.get("https://bagaul.herokuapp.com/");
+}, 300000); // every 5 minutes (300000)
 
 app.listen(port, () => {
     console.log('App started');
