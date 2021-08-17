@@ -1,4 +1,8 @@
 require('dotenv').config();
+var morgan = require('morgan');
+const https = require("https");
+const http = require("http");
+
 const express = require('express'),
     app = express(),
     cors = require('cors'),
@@ -36,7 +40,7 @@ bot.on('inline_query', (ctx) => {
 });
 
 bot.launch();
-
+app.use(morgan('tiny'));
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -145,8 +149,16 @@ if (process.env.PORT !== undefined || process.env.PORT !== '') {
 }
 
 setInterval(function() {
-    http.get("https://bagaul.herokuapp.com/");
-}, 300000); // every 5 minutes (300000)
+    if (process.env.ENV === '' || process.env.ENV === 'development' || process.env.ENV === undefined) {
+        http.get(`${process.env.HOST}/ping`, (res) => {
+            console.log(`refresh app dev ${res.body}`);
+        });
+    } else {
+        https.get(`${process.env.HOST}/ping`, (res) => {
+            console.log(`refresh app prod ${res.body}`);
+        });
+    }
+}, 300000);
 
 app.listen(port, () => {
     console.log('App started');
